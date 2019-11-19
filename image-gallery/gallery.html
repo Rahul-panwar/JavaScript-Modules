@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+      integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ="
+      crossorigin="anonymous"
+    />
+
+    <title>Gallery</title>
+
+    <style>
+      .main {
+        height: 100vh;
+      }
+
+      .lightbox-show {
+        display: block;
+      }
+
+      .lightbox-modal {
+        background: #000000cc;
+        /* padding: 40px; */
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        top: 0%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        /* z-index: -1; */
+      }
+
+      .image-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .lightbox-body {
+        height: 100vh;
+      }
+
+      .img100vh {
+        height: 100vh;
+      }
+
+      .icon-style {
+        position: absolute;
+        top: 80%;
+        color: #28a745;
+        transform: translateY(-50%);
+        font-size: 50px;
+        cursor: pointer;
+        z-index: 99999999;
+      }
+
+      .angle-left {
+        left: 50px;
+      }
+
+      .angle-right {
+        right: 50px;
+      }
+
+      .close-icon {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        color: #28a745;
+        font-size: 40px;
+        cursor: pointer;
+      }
+
+      .image-size {
+        min-width: 290px;
+        max-width: 100%;
+      }
+      .clicked-image {
+        min-height: 270px;
+      }
+
+      .image-center {
+        width: 300px;
+      }
+      .image-title {
+        width: 100%;
+        background-color: #00000099;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        padding: 5px;
+        text-align: center;
+        color: #fff;
+        border-radius: 4px;
+      }
+      @media (min-width: 767px) {
+        .icon-style {
+          top: 50%;
+        }
+        .image-center {
+          width: 500px;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="position-relative">
+    <main class="main">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h1 class="text-center">Image Gallery</h1>
+          </div>
+        </div>
+        <div class="row pt-5 lightbox-gallery">
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="position-relative image-size">
+              <img
+                onclick="showImage(this)"
+                src="./images/glass.jpg"
+                class="img-fluid rounded clicked-image"
+              />
+              <span class="image-title">Glass</span>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="position-relative image-size">
+              <img
+                onclick="showImage(this)"
+                src="./images/rose-blue-flower.jpg"
+                class="img-fluid rounded clicked-image"
+              />
+              <span class="image-title">Rose Blue Flower</span>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="position-relative image-size">
+              <img
+                onclick="showImage(this)"
+                src="./images/tiger.jpg"
+                class="img-fluid rounded clicked-image"
+              />
+              <span class="image-title">Tiger</span>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="position-relative image-size">
+              <img
+                onclick="showImage(this)"
+                src="./images/sunflower.jpg"
+                class="img-fluid rounded clicked-image"
+              />
+              <span class="image-title">Sunflower</span>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="position-relative image-size">
+              <img
+                onclick="showImage(this)"
+                src="./images/sky-paint.jpg"
+                class="img-fluid rounded clicked-image"
+              />
+              <span class="image-title">Sky Paint</span>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="position-relative image-size">
+              <img
+                onclick="showImage(this)"
+                src="./images/stonehenge.jpg"
+                class="img-fluid rounded clicked-image"
+              />
+              <span class="image-title">Stonehenge</span>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="position-relative image-size">
+              <img
+                onclick="showImage(this)"
+                src="./images/red-rose.jpg"
+                class="img-fluid rounded clicked-image"
+              />
+              <span class="image-title">Red Rose</span>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="position-relative image-size">
+              <img
+                onclick="showImage(this)"
+                src="./images/message-in-bottle.jpg"
+                class="img-fluid rounded clicked-image"
+              />
+              <span class="image-title">Message in Bottle</span>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="position-relative image-size">
+              <img
+                onclick="showImage(this)"
+                src="./images/bridge.jpg"
+                class="img-fluid rounded clicked-image"
+              />
+              <span class="image-title">Bridge in Water</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="lightbox-modal d-none" onclick="closeModal(event);">
+      <div class="lightbox-body">
+        <div class="position-relative img100vh">
+          <img class="img-fluid image-center" src="" />
+          <span onclick="prevImage();" class="icon-style angle-left"
+            ><i class="fas fa-angle-left"></i
+          ></span>
+          <span onclick="nextImage();" class="icon-style angle-right"
+            ><i class="fas fa-angle-right"></i
+          ></span>
+          <span class="close-icon close-modal" onclick="closeModal(event);"
+            ><i class="far fa-times-circle"></i
+          ></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+
+    <script>
+      // find all images and store in an array
+      var imageStack = document.querySelectorAll(".clicked-image");
+      var nodesArray = [].slice.call(imageStack);
+      var nodesArrayLen = nodesArray.length;
+      function showImage(clickImage) {
+        let mySrc = clickImage.src;
+        let lightBoxModal = document.querySelector(".lightbox-modal");
+        lightBoxModal.classList.remove("d-none");
+        let centerImage = document.querySelector(".image-center");
+        centerImage.setAttribute("src", mySrc);
+        let mainBox = document.querySelector(".main");
+        mainBox.classList.add("overflow-hidden");
+      }
+      // Change to next image
+      function nextImage() {
+        let centerImage = document.querySelector(".image-center");
+        let mySrc = centerImage.getAttribute("src");
+        for (var i = 0; i < nodesArrayLen; i++) {
+          var currentImage = nodesArray[i].src;
+          if (mySrc === currentImage) {
+            var indexPosition = i;
+          }
+        }
+        if (indexPosition + 1 === nodesArrayLen) {
+          let nextImage = nodesArray[0].src;
+          centerImage.setAttribute("src", nextImage);
+        } else {
+          let nextImage = nodesArray[indexPosition + 1].src;
+          centerImage.setAttribute("src", nextImage);
+        }
+      }
+      // Change to previous image
+      function prevImage() {
+        let centerImage = document.querySelector(".image-center");
+        let mySrc = centerImage.getAttribute("src");
+        for (var i = 0; i < nodesArrayLen; i++) {
+          var currentImage = nodesArray[i].src;
+          if (mySrc === currentImage) {
+            var indexPosition = i;
+          }
+        }
+        if (indexPosition === 0) {
+          let prevImage = nodesArray[5].src;
+          centerImage.setAttribute("src", prevImage);
+        } else {
+          let prevImage = nodesArray[indexPosition - 1].src;
+          centerImage.setAttribute("src", prevImage);
+        }
+      }
+      // Close lightbox modal
+      function closeModal(event) {
+        var x = event.target.classList[1];
+        if (
+          x === "img100vh" ||
+          x === "close-modal" ||
+          x === "fa-times-circle"
+        ) {
+          let lightBoxModal = document.querySelector(".lightbox-modal");
+          lightBoxModal.classList.add("d-none");
+          let mainBox = document.querySelector(".main");
+          mainBox.classList.remove("overflow-hidden");
+        }
+      }
+    </script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

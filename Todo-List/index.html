@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+
+  <title>Todo List</title>
+
+  <style>
+    @media(min-width: 1320px) {
+      .container {
+        max-width: 1230px;
+      }
+    }
+    @media(min-width: 1580px) {
+      .container {
+        max-width: 1440px;
+      }
+    }
+    @media(min-width: 1920px) {
+      .container {
+        max-width: 1840px;
+      }
+    }
+    @media(min-width: 2560px) {
+      .container {
+        max-width: 2360px;
+      }
+    }
+
+    .todo-list-container {
+      background-color: #bed0e8c4;
+      min-height: calc(100vh - 200px);
+    }
+
+    .overlayStyle {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.9);
+      height: calc(100% - 85px);
+      width: 100%;
+      top: 85px;
+      left: 0;
+    }
+
+    .overlay-close {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      color: #fff;
+      font-size: 24px;
+      background: none;
+      border: none;
+    }
+
+    .overlay-close:focus {
+      outline: none;
+    }
+
+    .update-button {
+      display: none;
+    }
+
+    .notify-button:focus {
+      box-shadow: none;
+    }
+
+    .task-list-header h2 {
+      color: #002856;
+    }
+
+    .task-list-header .bell-outer {
+      position: relative;
+    }
+
+    .task-list-header .circle-outer {
+      position: absolute;
+      right: 0px;
+      bottom: 12px;
+      color: #dd4045;
+      font-size: 12px;
+      display: none;
+    }
+
+    .task-list-header .circle-outer-display {
+      display: block;
+    }
+
+    .priority-label {
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .priority-action {
+      border-left: 2px solid black;
+      padding-left: 20px;
+      margin-left: 12px;
+    }
+
+    #taskList .task-item.hide-task {
+      display: none !important;
+    }
+
+    .task-content p {
+      color: #191c1f;
+    }
+
+    #todoContainer .dropleft .dropdown-toggle::before {
+      display: none;
+    }
+
+
+
+    .task-list-header .option-buttons-container .dropdown-menu .dropdown-item {
+      background-color: #253b50;
+      margin: 4px 0;
+      border-radius: 4px;
+    }
+
+    .task-list-header .option-buttons-container .dropdown-menu .dropdown-item p {
+      color: #fff;
+    }
+
+    .task-list-header .option-buttons-container .dropdown-menu .hide-task-notify {
+      display: none !important;
+    }
+
+    .background-banner {
+      background-image: url('milky-way.jpg');
+      /* background-position: right bottom, left top; */
+      background-repeat: repeat;
+      min-height: 100vh;
+    }
+
+    /* Image by <a href="https://pixabay.com/users/DarkWorkX-1664300/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3645269">DarkWorkX</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3645269">Pixabay</a> */
+    .theme-text-color {
+      color: #bed0e8;
+    }
+  </style>
+
+</head>
+
+<body>
+  <main class="background-banner">
+    <div class="todo-list">
+      <div class="container pb-5">
+        <h1 class="text-center p-5 theme-text-color">Todo List Using JavaScript</h1>
+        <div class="todo-list-container p-4 position-relative" id="todoContainer">
+          <form id="taskForm">
+            <div class="task-adder d-flex justify-content-between align-items-center">
+              <div class="flex-grow-1 mr-3">
+                <input type="text" class="form-control" placeholder="Enter Your Task Name" id="enterTask" required />
+              </div>
+              <div id="taskAction">
+                <button type="submit" id="addTaskButton" class="btn btn-success" onclick="addTask()"> <span
+                    class="mr-2"><i class="fas fa-plus"></i></span><span>Add
+                    Task</span></button>
+              </div>
+            </div>
+          </form>
+
+          <div class="d-flex justify-content-center align-items-center task-list-header">
+            <h2 class="text-center p-4">Task List</h2>
+            <div class="option-buttons-container ml-auto">
+
+              <div class="dropdown dropleft">
+                <button class="btn notify-button dropdown-toggle" type="button" id="dropdownMenu2"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="bell-outer"><i
+                      class="fas fa-2x fa-bell"></i><span id="bellCircle" class="circle-outer"><i
+                        class="fas fa-circle"></i></span></span> </button>
+
+                <div id="taskNotifiyContainer" class="dropdown-menu py-0 px-1 border-0" aria-labelledby="dropdownMenu2">
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="task-list-container my-4" id="taskList">
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Optional JavaScript -->
+  <script>
+    function addTask() {
+
+      // Prevent from reloading page
+      event.preventDefault();
+
+      // Entered form data
+      var enterTask = document.getElementById('enterTask').value;
+
+      // Reset form field
+      document.getElementById("taskForm").reset();
+
+      // Get the length of total task item
+      var taskItemCount = document.querySelectorAll('.task-item').length;
+      // Convert string to number
+      taskItemCount = parseInt(taskItemCount);
+
+      // Create task item id as taskId 
+      var taskItemIdLocal = taskItemCount + 1;
+
+      taskItemIdLocal = 'taskId' + taskItemIdLocal;
+
+      var targetDiv = document.getElementById("taskList").querySelectorAll('#' + taskItemIdLocal);
+
+      if (targetDiv.length == 1) {
+        var randomNumber = Math.floor((Math.random() * 100000000) + 1);
+        taskItemIdLocal = taskItemCount + randomNumber;
+        taskItemIdLocal = 'taskId' + taskItemIdLocal;
+      }
+
+      window.taskItemId = taskItemIdLocal;
+
+      // Creating task item element parent 1 div
+      var taskItemElement1 = document.createElement('div');
+      // Set Attribute of task item element parent 1 div
+      taskItemSetElement1 = taskItemElement1.setAttribute("id", taskItemId);
+      taskItemSetElement1 = taskItemElement1.setAttribute("class",
+        'task-item d-flex justify-content-between align-items-center my-2 py-4');
+      // Append first div to taskList container
+      var taskElement = document.getElementById("taskList");
+      taskElement = taskElement1 = taskElement.appendChild(taskItemElement1);
+
+      // Creating task item parent element immediate child 2 div
+      var taskItemElement2 = document.createElement('div');
+      // Set Attribute of parent element immediate child 2 div
+      taskItemSetElement2 = taskItemElement2.setAttribute("class", 'task-content');
+      // Append 2 element
+      taskElement = taskElement.appendChild(taskItemElement2);
+
+      // Creating task item 3 element p
+      var taskItemElement3 = document.createElement('p');
+      // Set Attribute of task item 3 element p
+      taskItemSetElement3 = taskItemElement3.setAttribute("id", 'para-' + taskItemId);
+      taskItemSetElement3 = taskItemElement3.setAttribute("class", 'mb-0');
+      taskItemSetElement3 = taskItemElement3.innerText = enterTask;
+      // Append 3 element
+      taskElement = taskElement.appendChild(taskItemElement3);
+
+      // Creating task item 4 element div
+      var taskItemElement4 = document.createElement('div');
+      // Set Attribute of task item 4 element div
+      taskItemSetElement4 = taskItemElement4.setAttribute("class", 'task-buttons d-flex flex-shrink-0');
+      // Append and assign 4 element
+      taskElement = taskElement4 = taskElement1.appendChild(taskItemElement4);
+
+      // Creating task item 5 element button
+      var taskItemElement5 = document.createElement('button');
+      // Set Attribute of task item 5 element button
+      taskItemSetElement5 = taskItemElement5.setAttribute("id", 'edit-' + taskItemId);
+      taskItemSetElement5 = taskItemElement5.setAttribute("class",
+        'btn btn-primary d-flex align-items-center text-nowrap');
+      taskItemSetElement5 = taskItemElement5.setAttribute("onclick", 'edtiTask(this)');
+      // Append and assign 5 element
+      taskElement = taskElement5 = taskElement.appendChild(taskItemElement5);
+
+      // Creating task item 6 element span
+      var taskItemElement6 = document.createElement('span');
+      // Set Attribute of task item 6 element span
+      taskItemSetElement6 = taskItemElement6.setAttribute("class", 'mr-2');
+      // Append 6 element
+      taskElement = taskElement.appendChild(taskItemElement6);
+
+      // Creating task item 7 element icon
+      var taskItemElement7 = document.createElement('i');
+      // Set Attribute of task item 7 element icon
+      taskItemSetElement7 = taskItemElement7.setAttribute("class", 'far fa-edit');
+      // Append 7 element
+      taskElement = taskElement.appendChild(taskItemElement7);
+
+      // Creating task item 8 element span
+      var taskItemElement8 = document.createElement('span');
+      // Set Attribute of task item 8 element span
+      taskItemSetElement8 = taskItemElement8.innerText = 'Edit';
+      // Append 8 element
+      taskElement = taskElement5.appendChild(taskItemElement8);
+
+      // Creating task item 9 element button
+      var taskItemElement9 = document.createElement('button');
+      // Set Attribute of task item 9 element button
+      taskItemSetElement9 = taskItemElement9.setAttribute("id", 'delete-' + taskItemId);
+      taskItemSetElement9 = taskItemElement9.setAttribute("class",
+        'btn btn-danger d-flex align-items-center text-nowrap mx-2');
+      taskItemSetElement9 = taskItemElement9.setAttribute("onclick", 'deleteTask(this)');
+      // Append 9 element
+      taskElement = taskElement9 = taskElement4.appendChild(taskItemElement9);
+
+      // Creating task item 10 element span
+      var taskItemElement10 = document.createElement('span');
+      // Set Attribute of task item 10 element span
+      taskItemSetElement10 = taskItemElement10.setAttribute("class", 'mr-2');
+      // Append and assign 10 element
+      taskElement = taskElement10 = taskElement9.appendChild(taskItemElement10);
+
+      // Creating task item 11 element icon
+      var taskItemElement11 = document.createElement('i');
+      // Set Attribute of task item 11 element icon
+      taskItemSetElement11 = taskItemElement11.setAttribute("class", 'far fa-trash-alt');
+      // Append 11 element
+      taskElement = taskElement10.appendChild(taskItemElement11);
+
+      // Creating task item 12 element span
+      var taskItemElement12 = document.createElement('span');
+      // Set Attribute of task item 12 element span
+      taskItemSetElement12 = taskItemElement12.innerText = 'Delete';
+      // Append and assign 12 element
+      taskElement = taskElement9.appendChild(taskItemElement12);
+
+      // Creating task item 13 element button hide
+      var taskItemElement13 = document.createElement('button');
+      taskItemSetElement13 = taskItemElement13.setAttribute("class",
+        'btn btn-secondary d-flex align-items-center text-nowrap mr-2');
+      taskItemSetElement13 = taskItemElement13.setAttribute("id", 'hide-' + taskItemId);
+      taskItemSetElement13 = taskItemElement13.setAttribute("onclick", 'hideTask(this)');
+      // Append and assign 13 element
+      taskElement = taskElement13 = taskElement4.appendChild(taskItemElement13);
+
+      // Creating task item 14 element span hide
+      var taskItemElement14 = document.createElement('span');
+      taskItemSetElement14 = taskItemElement14.setAttribute("class", 'mr-2');
+      // Append and assign 14 element
+      taskElement = taskElement14 = taskElement13.appendChild(taskItemElement14);
+
+      // Creating task item 15 element span hide
+      var taskItemElement15 = document.createElement('i');
+      taskItemSetElement15 = taskItemElement15.setAttribute("class", 'far fa-eye-slash');
+      // Append and assign 15 element
+      taskElement = taskElement15 = taskElement14.appendChild(taskItemElement15);
+
+      // Creating task item 16 element span hide
+      var taskItemElement16 = document.createElement('span');
+      taskItemSetElement16 = taskItemElement16.innerText = 'Hide';
+      // Append and assign 16 element
+      taskElement = taskElement16 = taskElement13.appendChild(taskItemElement16);
+
+      // Creating task item 17 element div
+      var taskItemElement17 = document.createElement('div');
+      taskItemSetElement17 = taskItemElement17.setAttribute("class", 'text-center position-relative priority-action');
+      // Append and assign 17 element
+      taskElement = taskElement17 = taskElement4.appendChild(taskItemElement17);
+
+      // Creating task item 18 element select
+      var taskItemElement18 = document.createElement('label');
+      taskItemSetElement18 = taskItemElement18.setAttribute("class", 'position-absolute priority-label');
+      taskItemSetElement18 = taskItemElement18.innerText = 'Priority';
+      taskElement = taskElement18 = taskElement17.appendChild(taskItemElement18);
+
+      // Creating task item 19 element select
+      var taskItemElement19 = document.createElement('div');
+      taskItemSetElement19 = taskItemElement19.setAttribute("class",
+        'd-flex justify-content-between align-items-center');
+      taskElement = taskElement19 = taskElement17.appendChild(taskItemElement19);
+
+      // Creating task item 20 element button
+      var taskItemElement20 = document.createElement('button');
+      // Set Attribute of task item 20 element button
+      taskItemSetElement20 = taskItemElement20.setAttribute("id", 'priorityHi-' + taskItemId);
+      taskItemSetElement20 = taskItemElement20.setAttribute("class",
+        'btn btn-success d-flex align-items-center text-nowrap');
+      taskItemSetElement20 = taskItemElement20.setAttribute("onclick", 'changePriority(this)');
+      // Append and assign 20 element
+      taskElement = taskElement20 = taskElement19.appendChild(taskItemElement20);
+
+      // Creating task item 21 element span
+      var taskItemElement21 = document.createElement('span');
+      // Set Attribute of task item 21 element span
+      taskItemSetElement21 = taskItemElement21.setAttribute("class", 'mr-2');
+      // Append 21 element
+      taskElement = taskElement21 = taskElement20.appendChild(taskItemElement21);
+
+      // Creating task item 22 element icon
+      var taskItemElement22 = document.createElement('i');
+      // Set Attribute of task item 22 element icon
+      taskItemSetElement22 = taskItemElement22.setAttribute("class", 'fas fa-long-arrow-alt-up');
+      // Append 22 element
+      taskElement = taskElement21 = taskElement.appendChild(taskItemElement22);
+
+      // Creating task item 23 element span
+      var taskItemElement23 = document.createElement('span');
+      // Set Attribute of task item 23 element span
+      taskItemSetElement23 = taskItemElement23.innerText = 'High';
+      // Append 23 element
+      taskElement = taskElement23 = taskElement20.appendChild(taskItemElement23);
+
+      // Creating task item 24 element button
+      var taskItemElement24 = document.createElement('button');
+      // Set Attribute of task item 24 element button
+      taskItemSetElement24 = taskItemElement24.setAttribute("id", 'priorityLo-' + taskItemId);
+      taskItemSetElement24 = taskItemElement24.setAttribute("class",
+        'btn btn-danger d-flex align-items-center text-nowrap mx-2');
+      taskItemSetElement24 = taskItemElement24.setAttribute("onclick", 'changePriority(this)');
+      // Append 24 element
+      taskElement = taskElement24 = taskElement19.appendChild(taskItemElement24);
+
+      // Creating task item 25 element span
+      var taskItemElement25 = document.createElement('span');
+      // Set Attribute of task item 25 element span
+      taskItemSetElement25 = taskItemElement25.setAttribute("class", 'mr-2');
+      // Append and assign 25 element
+      taskElement = taskElement25 = taskElement24.appendChild(taskItemElement25);
+
+      // Creating task item 26 element icon
+      var taskItemElement26 = document.createElement('i');
+      // Set Attribute of task item 26 element icon
+      taskItemSetElement26 = taskItemElement26.setAttribute("class", 'fas fa-long-arrow-alt-down');
+      // Append 26 element
+      taskElement = taskElement25.appendChild(taskItemElement26);
+
+      // Creating task item 27 element span
+      var taskItemElement27 = document.createElement('span');
+      // Set Attribute of task item 27 element span
+      taskItemSetElement27 = taskItemElement27.innerText = 'Low';
+      // Append and assign 27 element
+      taskElement = taskElement24.appendChild(taskItemElement27);
+
+
+
+      // Remove overlay on submit form
+      if (document.getElementById('overlay') != null) {
+        removeOverlay();
+      }
+
+    }
+
+    // Edit task function (show overlay, focus on input field with selected task data, change Add task button with Update Task button, )
+    function edtiTask(editButton) {
+      var buttonId = editButton.id;
+
+      window.taskId = buttonId.slice(5);
+      window.paraId = document.getElementById('para-' + taskId);
+      var para = paraId.innerHTML;
+      document.getElementById('enterTask').value = para;
+
+      // Create Update task button
+      var updateButton = document.createElement('button');
+      // Set Attribute of task item 5 element button
+      buttonUpdateSet = updateButton.setAttribute("type", 'submit');
+      buttonUpdateSet = updateButton.setAttribute("id", 'updateTaskButton');
+      buttonUpdateSet = updateButton.setAttribute("class", 'btn btn-success');
+      buttonUpdateSet = updateButton.setAttribute("onclick", 'updateTask()');
+
+      actionBox = document.getElementById('taskAction')
+      updateButtonElement = actionBox.appendChild(updateButton);
+
+      var buttonUpdateSpan1 = document.createElement('span');
+      buttonUpdateSetSpan1 = buttonUpdateSpan1.setAttribute("class", 'mr-2');
+      updateButtonElement = updateButtonElement.appendChild(buttonUpdateSpan1);
+
+      var buttonUpdateIcon = document.createElement('i');
+      buttonUpdateIconSet = buttonUpdateIcon.setAttribute("class", 'fas fa-edit');
+
+      updateButtonElement = updateButtonElement.appendChild(buttonUpdateIcon);
+
+      var buttonUpdateSpan2 = document.createElement('span');
+      updateButtonElementSet = buttonUpdateSpan2.innerText = 'Update Task';
+
+      updateButtonElement = document.getElementById('updateTaskButton').appendChild(buttonUpdateSpan2);
+
+      // Remove add task button
+      var parentNode = document.getElementById("taskAction");
+      var elementRemove = document.getElementById('addTaskButton');
+      parentNode.removeChild(elementRemove);
+
+      document.getElementById("enterTask").focus();
+
+      todoContain = document.getElementById('todoContainer');
+
+      // Creating Overlay element
+      var overlayElement = document.createElement('div');
+      // Set Attribute of Overlay   
+      overlaySetElement = overlayElement.setAttribute("id", 'overlay');
+      overlaySetElement = overlayElement.setAttribute("class", 'overlayStyle');
+      todoContain.appendChild(overlayElement);
+
+      // Creating Overlay close element
+      var overlayElementClose = document.createElement('button');
+      // Set Attribute of Overlay close   
+      overlayElementCloseSet = overlayElementClose.setAttribute("class", 'overlay-close');
+      overlayElementCloseSet = overlayElementClose.setAttribute("onclick", 'removeOverlay()');
+      overlayElement.appendChild(overlayElementClose);
+
+      // Creating Overlay close icon element
+      var overlayElementCloseIcon = document.createElement('i');
+      // Set Attribute of Overlay close icon   
+      overlayElementCloseIconSet = overlayElementCloseIcon.setAttribute("class", 'fas fa-times-circle');
+      overlayElementClose.appendChild(overlayElementCloseIcon);
+    }
+
+
+    // Update Task on Update task button
+    function updateTask() {
+
+      // Prevent from reloading page
+      event.preventDefault();
+
+      // Remove Update Task button
+      var parentNode = document.getElementById("taskAction");
+      var elementRemove = document.getElementById('updateTaskButton');
+      parentNode.removeChild(elementRemove);
+
+      // Add DOM Element Add Task button
+      var addButton = document.createElement('button');
+      // Set Attribute of task item 5 element button
+      buttonAddSet = addButton.setAttribute("type", 'submit');
+      buttonAddSet = addButton.setAttribute("id", 'addTaskButton');
+      buttonAddSet = addButton.setAttribute("class", 'btn btn-success');
+      buttonAddSet = addButton.setAttribute("onclick", 'addTask()');
+      actionBox = document.getElementById('taskAction')
+      addButtonElement = actionBox.appendChild(addButton);
+      var buttonSpan1 = document.createElement('span');
+      buttonSpanSet1 = buttonSpan1.setAttribute("class", 'mr-2');
+      addButtonElement = addButtonElement.appendChild(buttonSpan1);
+      var buttonIcon = document.createElement('i');
+      buttonIconSet = buttonIcon.setAttribute("class", 'fas fa-plus');
+      addButtonElement = addButtonElement.appendChild(buttonIcon);
+      var buttonSpan2 = document.createElement('span');
+      buttonAddElement = buttonSpan2.innerText = 'Add Task';
+      addButtonElement = document.getElementById('addTaskButton').appendChild(buttonSpan2);
+
+      // Updated form data
+      var enterTask = document.getElementById('enterTask').value;
+      document.getElementById('para-' + taskId).innerHTML = enterTask;
+      document.getElementById("enterTask").blur();
+      document.getElementById("taskForm").reset();
+      removeOverlay();
+    }
+
+    // Remove Oerlay Function
+    function removeOverlay() {
+      document.getElementById("taskForm").reset();
+      var parentNode = document.getElementById("todoContainer");
+      var elementRemove = document.getElementById('overlay');
+      parentNode.removeChild(elementRemove);
+
+      if (document.getElementById('updateTaskButton') != null) {
+        // Remove Update Task button
+        createAddTaskButton();
+      }
+    }
+
+
+    // Create and append Add Task Button
+    function createAddTaskButton() {
+      // Add DOM Element Add Task button
+      var addButton = document.createElement('button');
+      // Set Attribute of task item 5 element button
+      buttonAddSet = addButton.setAttribute("type", 'submit');
+      buttonAddSet = addButton.setAttribute("id", 'addTaskButton');
+      buttonAddSet = addButton.setAttribute("class", 'btn btn-success');
+      buttonAddSet = addButton.setAttribute("onclick", 'addTask()');
+      actionBox = document.getElementById('taskAction')
+      addButtonElement = actionBox.appendChild(addButton);
+      var buttonSpan1 = document.createElement('span');
+      buttonSpanSet1 = buttonSpan1.setAttribute("class", 'mr-2');
+      addButtonElement = addButtonElement.appendChild(buttonSpan1);
+      var buttonIcon = document.createElement('i');
+      buttonIconSet = buttonIcon.setAttribute("class", 'fas fa-plus');
+      addButtonElement = addButtonElement.appendChild(buttonIcon);
+      var buttonSpan2 = document.createElement('span');
+      buttonAddElement = buttonSpan2.innerText = 'Add Task';
+      addButtonElement = document.getElementById('addTaskButton').appendChild(buttonSpan2);
+      // Remove Update Task button
+      var parentNode = document.getElementById("taskAction");
+      var elementRemove = document.getElementById('updateTaskButton');
+      parentNode.removeChild(elementRemove);
+    }
+
+    // Delete a selected task
+    function deleteTask(deleteButton) {
+      var buttonId = deleteButton.id;
+      var taskId = buttonId.slice(7);
+      // // Remove Update Task button
+      var parentNode = document.getElementById("taskList");
+      var elementRemove = document.getElementById(taskId);
+      parentNode.removeChild(elementRemove);
+      taskCount();
+
+    }
+
+    // Change Priority of selected task High or Low
+    function changePriority(priority) {
+      var buttonId = priority.id;
+      var selectId = buttonId.slice(11);
+
+      var prioritySet = buttonId.substring(
+        buttonId.lastIndexOf("y") + 1,
+        buttonId.lastIndexOf("-")
+      );
+
+      var eElement = document.getElementById('taskList'); // some E DOM instance
+      var selectElementID = document.getElementById(selectId); //element which should be first in E
+
+      if (prioritySet == 'Hi') {
+        eElement.insertBefore(selectElementID, eElement.firstChild);
+      } else if (prioritySet == 'Lo') {
+        eElement.appendChild(selectElementID);
+      }
+
+    }
+
+    // Hide task on click of hide button
+    function hideTask(buttonHide) {
+      var buttonId = buttonHide.id;
+
+      window.buttonHideId = buttonId.slice(5);
+      var elementHide = document.getElementById(buttonHideId);
+      elementHide.classList.toggle('hide-task');
+
+      var notifyButton = document.getElementById('bellCircle');
+      notifyButton.classList.add('circle-outer-display');
+
+      var elementId = elementHide.id;
+
+      var taskParaId = 'para-' + elementId;
+
+      notifyTaskId = 'notifyTask-' + elementId;
+
+      var targetDiv = document.getElementById('taskNotifiyContainer').querySelectorAll('#' + notifyTaskId);
+      if (targetDiv.length == 1) {
+
+        showNotifyElement = document.getElementById(notifyTaskId);
+
+        showNotifyElement.classList.toggle('hide-task-notify');
+
+      } else {
+
+        // Create Element in Notify container
+        var notifyTaskItem = document.createElement('div');
+        // Set Attribute of task item 5 element 
+        notifyTaskSet = notifyTaskItem.setAttribute('id', 'notifyTask-' + elementId);
+        notifyTaskSet = notifyTaskItem.setAttribute('class',
+          'dropdown-item d-flex justify-content-between align-items-center px-3');
+
+        notifyContainer = document.getElementById('taskNotifiyContainer')
+        notifyTaskElement = notifyTaskElement1 = notifyContainer.appendChild(notifyTaskItem);
+
+        // Create Element in Notify Item para
+        var notifyTaskPara = document.createElement('p');
+        // Set Attribute of task para 5 element 
+        notifyParaSet = notifyTaskPara.setAttribute('id', 'taskPara-' + elementId);
+        notifyParaSet = notifyTaskPara.setAttribute('class', 'mb-0 mr-3');
+
+        hidePara = document.getElementById(taskParaId).innerHTML;
+        notifyTaskParaSet = notifyTaskPara.innerText = hidePara;
+
+        notifyTaskElement = notifyTaskElement2 = notifyTaskElement1.appendChild(notifyTaskPara);
+
+        // Create Element in Notify Item button
+        var notifyTaskButton = document.createElement('button');
+        // Set Attribute of task button 5 element 
+        notifyTaskButtonSet = notifyTaskButton.setAttribute('id', 'notifyBtn-' + elementId);
+        notifyTaskButtonSet = notifyTaskButton.setAttribute('class', 'btn btn-primary btn-sm');
+        notifyTaskButtonSet = notifyTaskButton.setAttribute('onclick', 'showTaskNotify(this)');
+        notifyTaskButtonSet = notifyTaskButton.setAttribute('type', 'button');
+        notifyTaskButtonSet = notifyTaskButton.innerText = 'Show';
+
+        notifyTaskElement = notifyTaskElement3 = notifyTaskElement1.appendChild(notifyTaskButton);
+        taskCount();
+      }
+    }
+
+    // Show Notify Task
+    function showTaskNotify(showNotifyButton) {
+      var buttonId = showNotifyButton.id;
+      window.showTaskId = buttonId.slice(10);
+      showElement = document.getElementById(showTaskId);
+      showElement.classList.toggle('hide-task');
+      hideElement = document.getElementById('notifyTask-' + showTaskId);
+      hideElement.classList.toggle('hide-task-notify');
+
+      taskCount();
+    }
+
+    // // Count Notifications
+    function taskCount() {
+      var containerId = document.getElementById('taskNotifiyContainer');
+      childCount = containerId.childElementCount;
+      children = document.querySelectorAll('#taskNotifiyContainer .hide-task-notify');
+      children = children.length;
+
+      if (children == childCount) {
+        var element = document.getElementById("bellCircle");
+        element.classList.remove("circle-outer-display");
+      }
+    }
+  </script>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

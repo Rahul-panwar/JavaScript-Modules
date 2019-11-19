@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <title>JavaScript Custom Tab</title>
+
+  <style>
+    body {
+      background-color: #c7eae0;
+      font-family: 'sans-serif', sans-serif;
+    }
+
+    .tabs-container {
+      margin: 5% 10%;
+      background-color: #c1e3d9;
+      padding: 3%;
+      border-radius: 4px;
+    }
+
+    .tabs-container .tabs-menu ul {
+      padding: 0;
+      margin: 0;
+    }
+
+    .tabs-container .tabs-menu ul li {
+      list-style-type: none;
+      display: inline-block;
+      margin: 5px;
+    }
+
+    .tabs-container .tabs-menu ul li:first-child {
+      margin-left: 0;
+    }
+
+    .tabs-container .tabs-menu ul li a {
+      text-decoration: none;
+      color: rgba(0, 0, 0, 0.4);
+      background-color: #b4cbc4;
+      padding: 7px 25px;
+      border-radius: 4px;
+    }
+
+    .tabs-menu ul li a.tab-active {
+      background-color: #588d7d;
+      color: #ffffff;
+    }
+
+    .tabs-container .tabs-content {
+      padding: 20px;
+    }
+
+    .tab {
+      display: none;
+    }
+
+    .tab h2 {
+      color: rgba(0, 0, 0, .7);
+    }
+
+    .tab p {
+      color: rgba(0, 0, 0, 0.6);
+      text-align: justify;
+    }
+
+    .tab-data-active {
+      display: block;
+    }
+  </style>
+
+</head>
+
+<body>
+  <main>
+    <div class="container">
+      <h1 class="p-5 text-center">Custom Tabs Using JavaScript</h1>
+      <div class="my-5">
+        <div class="tabs-container">
+          <div class="tabs-menu">
+            <ul>
+              <li><a href="#" class="tab-button tab-active" id="tab1" onclick="tabSwitch(this)">Tab 1</a></li>
+              <li><a href="#" class="tab-button" id="tab2" onclick="tabSwitch(this)">Tab 2</a></li>
+              <li><a href="#" class="tab-button" id="tab3" onclick="tabSwitch(this)">Tab 3</a></li>
+            </ul>
+          </div>
+          <div class="tabs-content">
+            <div class="tab tab-data-active" data-id="tab1">
+              <h2>Custom Tab1</h2>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium, provident?</p>
+            </div>
+            <div class="tab" data-id="tab2">
+              <h2>Custom Tab2</h2>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium, provident?</p>
+            </div>
+            <div class="tab" data-id="tab3">
+              <h2>Custom Tab3</h2>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium, provident?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Optional JavaScript -->
+  <script>
+    function tabSwitch(btnTab) {
+      // Get Clicked tab ID
+      var tabId = btnTab.id;
+      // Remove tab-active class from all tab buttons
+      document.querySelectorAll('.tab-active')[0].classList.remove('tab-active');
+      // Add tab-active class to clicked tab button
+      document.getElementById(tabId).classList.add('tab-active');
+      // Remove tab-data-active class from all tabs
+      document.querySelectorAll('.tab-data-active')[0].classList.remove('tab-data-active');
+      // Add tab-data-active class to selected tab
+      document.querySelector('[data-id=' + tabId + ']').classList.add('tab-data-active');
+    }
+  </script>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

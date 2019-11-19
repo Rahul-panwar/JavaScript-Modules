@@ -1,0 +1,132 @@
+@media(min-width: 1320px) {
+    .container {
+        max-width: 1230px;
+    }
+}
+
+@media(min-width: 1580px) {
+    .container {
+        max-width: 1440px;
+    }
+}
+
+@media(min-width: 1920px) {
+    .container {
+        max-width: 1840px;
+    }
+}
+
+@media(min-width: 2560px) {
+    .container {
+        max-width: 2360px;
+    }
+}
+
+.todo-list-container {
+    background-color: #bed0e8c4;
+    min-height: calc(100vh - 200px);
+}
+
+.overlayStyle {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    height: calc(100% - 85px);
+    width: 100%;
+    top: 85px;
+    left: 0;
+}
+
+.overlay-close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    color: #fff;
+    font-size: 24px;
+    background: none;
+    border: none;
+}
+
+.overlay-close:focus {
+    outline: none;
+}
+
+.update-button {
+    display: none;
+}
+
+.notify-button:focus {
+    box-shadow: none;
+}
+
+.task-list-header h2 {
+    color: #002856;
+}
+
+.task-list-header .bell-outer {
+    position: relative;
+}
+
+.task-list-header .circle-outer {
+    position: absolute;
+    right: 0px;
+    bottom: 12px;
+    color: #dd4045;
+    font-size: 12px;
+    /* display: none; */
+}
+
+.task-list-header .circle-outer-display {
+    display: block;
+}
+
+.priority-label {
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.priority-action {
+    border-left: 2px solid black;
+    padding-left: 20px;
+    margin-left: 12px;
+}
+
+#taskList .task-item.hide-task {
+    display: none !important;
+}
+
+.task-content p {
+    color: #191c1f;
+}
+
+#todoContainer .dropleft .dropdown-toggle::before {
+    display: none;
+}
+
+
+
+.task-list-header .option-buttons-container .dropdown-menu .dropdown-item {
+    background-color: #253b50;
+    margin: 4px 0;
+    border-radius: 4px;
+}
+
+.task-list-header .option-buttons-container .dropdown-menu .dropdown-item p {
+    color: #fff;
+}
+
+.task-list-header .option-buttons-container .dropdown-menu .hide-task-notify {
+    display: none !important;
+}
+
+.background-banner {
+    background-image: url('milky-way.jpg');
+    /* background-position: right bottom, left top; */
+    background-repeat: repeat;
+    min-height: 100vh;
+}
+
+/* Image by <a href="https://pixabay.com/users/DarkWorkX-1664300/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3645269">DarkWorkX</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3645269">Pixabay</a> */
+.theme-text-color {
+    color: #bed0e8;
+}
