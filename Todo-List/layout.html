@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+        integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+
+    <title>Todo List</title>
+
+    <link rel="stylesheet" href="./todo-list-layout.css">
+
+</head>
+
+<body>
+    <main class="background-banner">
+        <div class="todo-list">
+            <div class="container">
+                <h1 class="text-center theme-text-color p-5">Todo List Using JavaScript</h1>
+
+                <div class="todo-list-container p-4 position-relative" id="todoContainer">
+                    <form id="taskForm">
+                        <div class="task-adder d-flex justify-content-between align-items-center">
+                            <div class="flex-grow-1 mr-3">
+                                <input type="text" class="form-control" placeholder="Enter Your Task Name"
+                                    id="enterTask" required />
+                            </div>
+                            <div id="taskAction">
+                                <button type="submit" id="addTaskButton" class="btn btn-success"
+                                    onclick="addTask(this)">
+                                    <span class="mr-2"><i class="fas fa-plus"></i></span><span>Add
+                                        Task</span></button>
+                                <button type="submit" id="updateTaskButton" class="btn btn-success update-button"
+                                    onclick="updateTask()"> <span class="mr-2"><i class="fas fa-edit"></i></span>
+                                    <span>Update
+                                        Task</span></button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="d-flex justify-content-center align-items-center task-list-header">
+                        <h2 class="text-center p-4">Task List</h2>
+                        <div class="option-buttons-container ml-auto">
+
+                            <div class="dropdown dropleft">
+                                <button class="btn notify-button dropdown-toggle" type="button" id="dropdownMenu2"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+                                        class="bell-outer"><i class="fas fa-2x fa-bell"></i><span id="bellCircle"
+                                            class="circle-outer"><i class="fas fa-circle"></i></span></span> </button>
+
+                                <div id="taskNotifiyContainer" class="dropdown-menu py-0 px-1"
+                                    aria-labelledby="dropdownMenu2">
+                                    <div id="notifyTask-taskId1"
+                                        class="dropdown-item d-flex justify-content-between align-items-center px-3 my-1">
+                                        <p id="taskPara-taskId1" class="mb-0 mr-3">Lorem ipsum
+                                            consectetur elit.</p><button id="notifyBtn-taskId1"
+                                            class="btn btn-primary btn-sm" onclick="showTaskNotify(this)"
+                                            type="button">Show</button>
+                                    </div>
+                                    <div id="notifyTask-taskId2"
+                                        class="dropdown-item d-flex justify-content-between align-items-center px-3 my-1">
+                                        <p id="taskPara-taskId2" class="mb-0 mr-3">Lorem ipsum
+                                            consectetur elit.</p><button id="notifyBtn-taskId2"
+                                            class="btn btn-primary btn-sm" onclick="showTaskNotify(this)"
+                                            type="button">Show</button>
+                                    </div>
+                                    <div id="notifyTask-taskId3"
+                                        class="dropdown-item d-flex justify-content-between align-items-center px-3 my-1">
+                                        <p id="taskPara-taskId3" class="mb-0 mr-3">Lorem ipsum est consequuntur.</p>
+                                        <button id="notifyBtn-taskId3" class="btn btn-primary btn-sm"
+                                            onclick="showTaskNotify(this)" type="button">Show</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="task-list-container my-4" id="taskList">
+                        <!-- Task Item Layout -->
+                        <div class="task-item d-flex justify-content-between align-items-center py-4">
+                            <div class="task-content">
+                                <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. porro laborum
+                                    officiis aperiam voluptatem
+                                    deserunt suscipit. Dolore iure!</p>
+                            </div>
+                            <div class="task-buttons d-flex flex-shrink-0">
+                                <button class="btn btn-primary d-flex align-items-center text-nowrap"><span
+                                        class="mr-2"><i class="far fa-edit"></i></span> <span>Edit</span></button>
+                                <button class="btn btn-danger d-flex align-items-center text-nowrap mx-2"><span
+                                        class="mr-2"><i class="far fa-trash-alt"></i></span>
+                                    <span>Delete</span></button>
+
+                                <button class="btn btn-secondary d-flex align-items-center text-nowrap mx-2"><span
+                                        class="mr-2"><i class="far fa-eye-slash"></i></span><span>Hide</span></button>
+
+                                <div class="text-center position-relative priority-action">
+                                    <label class="position-absolute priority-label">Priority</label>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <button class="btn btn-success d-flex align-items-center text-nowrap"><span
+                                                class="mr-2"><i class="fas fa-long-arrow-alt-up"></i></span>
+                                            <span>High</span></button>
+                                        <button class="btn btn-danger d-flex align-items-center text-nowrap mx-2"><span
+                                                class="mr-2"><i class="fas fa-long-arrow-alt-down"></i></span>
+                                            <span>Low</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Task Item Layout End -->
+
+                        <div class="task-item d-flex justify-content-between align-items-center py-4">
+                            <div class="task-content">
+                                <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. porro laborum
+                                    officiis aperiam voluptatem
+                                    deserunt suscipit. Dolore iure!</p>
+                            </div>
+                            <div class="task-buttons d-flex flex-shrink-0">
+                                <button class="btn btn-primary d-flex align-items-center text-nowrap"><span
+                                        class="mr-2"><i class="far fa-edit"></i></span> <span>Edit</span></button>
+                                <button class="btn btn-danger d-flex align-items-center text-nowrap mx-2"><span
+                                        class="mr-2"><i class="far fa-trash-alt"></i></span>
+                                    <span>Delete</span></button>
+
+                                <button class="btn btn-secondary d-flex align-items-center text-nowrap mx-2"><span
+                                        class="mr-2"><i class="far fa-eye-slash"></i></span><span>Hide</span></button>
+
+                                <div class="text-center position-relative priority-action">
+                                    <label class="position-absolute priority-label">Priority</label>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <button class="btn btn-success d-flex align-items-center text-nowrap"><span
+                                                class="mr-2"><i class="fas fa-long-arrow-alt-up"></i></span>
+                                            <span>High</span></button>
+                                        <button class="btn btn-danger d-flex align-items-center text-nowrap mx-2"><span
+                                                class="mr-2"><i class="fas fa-long-arrow-alt-down"></i></span>
+                                            <span>Low</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-item d-flex justify-content-between align-items-center py-4">
+                            <div class="task-content">
+                                <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. porro laborum
+                                    officiis aperiam voluptatem
+                                    deserunt suscipit. Dolore iure!</p>
+                            </div>
+                            <div class="task-buttons d-flex flex-shrink-0">
+                                <button class="btn btn-primary d-flex align-items-center text-nowrap"><span
+                                        class="mr-2"><i class="far fa-edit"></i></span> <span>Edit</span></button>
+                                <button class="btn btn-danger d-flex align-items-center text-nowrap mx-2"><span
+                                        class="mr-2"><i class="far fa-trash-alt"></i></span>
+                                    <span>Delete</span></button>
+
+                                <button class="btn btn-secondary d-flex align-items-center text-nowrap mx-2"><span
+                                        class="mr-2"><i class="far fa-eye-slash"></i></span><span>Hide</span></button>
+
+                                <div class="text-center position-relative priority-action">
+                                    <label class="position-absolute priority-label">Priority</label>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <button class="btn btn-success d-flex align-items-center text-nowrap"><span
+                                                class="mr-2"><i class="fas fa-long-arrow-alt-up"></i></span>
+                                            <span>High</span></button>
+                                        <button class="btn btn-danger d-flex align-items-center text-nowrap mx-2"><span
+                                                class="mr-2"><i class="fas fa-long-arrow-alt-down"></i></span>
+                                            <span>Low</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="./todo-list-layout.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

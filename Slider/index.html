@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+
+  <title>Slider</title>
+  <style>
+    .slider {
+      position: relative;
+      padding: 10px;
+      background-color: #ebf5fd;
+    }
+
+    .slider .slider-content {
+      margin: auto;
+    }
+
+    .slider .slider-content .slider-item {
+      display: none;
+    }
+
+    .slider .slider-content .slider-item .user-img-container img {
+      width: 100px;
+    }
+
+    .slider .slider-content .active-slide {
+      display: block;
+    }
+
+    .slider .slider-buttons ul li {
+      display: inline-block;
+    }
+
+    .slider .slider-buttons ul li a.active-dot {
+      color: #2196f3 !important;
+    }
+
+    .slider .slider-buttons .slide-previous {
+      left: 20px;
+    }
+
+    .slider .slider-buttons .slide-next {
+      right: 20px;
+    }
+
+    .slider .slider-buttons .slide-previous,
+    .slider .slider-buttons .slide-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #2196f3 !important;
+    }
+
+    @media (min-width: 400px) {
+      .slider {
+        padding: 20px;
+      }
+
+      .slider .slider-buttons .slide-previous {
+        left: 40px;
+      }
+
+      .slider .slider-buttons .slide-next {
+        right: 40px;
+      }
+    }
+
+    @media(min-width: 767px) and (max-width: 900px) {
+      .slider .slider-content {
+        width: 70vw;
+      }
+
+      .slider .slider-buttons .slide-previous {
+        left: 60px;
+      }
+
+      .slider .slider-buttons .slide-next {
+        right: 60px;
+      }
+    }
+
+    @media(min-width: 991px) {
+      .slider .slider-content {
+        width: 55vw;
+        height: 260px;
+      }
+
+      .slider .slider-buttons .slide-previous {
+        left: 100px;
+      }
+
+      .slider .slider-buttons .slide-next {
+        right: 100px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .slider .slider-content {
+        width: 50vw;
+      }
+    }
+
+    @media (min-width: 1440px) {
+      .slider .slider-content {
+        width: 40vw;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="testimonial-slider">
+      <div class="container">
+        <h1 class="text-center p-5">Testimonial Slider</h1>
+        <div class="slider">
+          <div class="slider-content">
+            <div class="slider-item text-center active-slide" data-slide="1" id="1">
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus, delectus officiis.
+                Iure, facere?
+                Fugiat hic qui ullam accusantium quae error! Inventore ullam adipisci ab iste delectus a facilis ea
+                debitis!</p>
+              <div class="user-img-container mb-2">
+                <img class="img-fluid rounded-circle" src="./images/1.jpg" />
+              </div>
+              <p>David Jones</p>
+            </div>
+            <div class="slider-item text-center" data-slide="2" id="2">
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus, delectus officiis.
+                Fugiat hic qui ullam accusantium quae error! Inventore ullam adipisci ab iste delectus
+                debitis ipsum dolor sit amet consectetur, adipisicing elit. Minus, delectus officiis.
+                Fugiat hic qui ullam accusantium quae error! Inventore ullam adipisci ab iste delectus
+                debitis!!</p>
+              <div class="user-img-container mb-2">
+                <img class="img-fluid rounded-circle" src="./images/2.jpg" />
+              </div>
+              <p>Anna Wayne</p>
+            </div>
+            <div class="slider-item text-center" data-slide="3" id="3">
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus, delectus officiis.
+                Iure, facere? Inventore ullam adipisci ab iste delectus a facilis ea
+                debitis!</p>
+              <div class="user-img-container mb-2">
+                <img class="img-fluid rounded-circle" src="./images/3.jpg" />
+              </div>
+              <p>Jim Cook</p>
+            </div>
+          </div>
+          <div class="slider-buttons">
+            <!-- Slider Indicator Start -->
+            <ul class="slider-indicator list-unstyled text-center">
+              <li onclick="currentSlideDot(1)"><a href="#" data-dot='1' class="text-reset active-dot"><i
+                    class="far fa-dot-circle"></i></a></li>
+              <li onclick="currentSlideDot(2)"><a href="#" data-dot='2' class="text-reset"><i
+                    class="far fa-dot-circle"></i></a></li>
+              <li onclick="currentSlideDot(3)"><a href="#" data-dot='3' class="text-reset"><i
+                    class="far fa-dot-circle"></i></a></li>
+            </ul>
+            <!-- Slider Indicator End -->
+
+            <!-- Slider Arrows Start -->
+            <a href="#" class="text-reset slide-previous" id="previous" onclick="slideChange(this)"><i
+                class="fa fa-chevron-left"></i></a>
+            <a href="#" class="text-reset slide-next" id="next" onclick="slideChange(this)"><i
+                class="fa fa-chevron-right"></i></a>
+            <!-- Slider Arrows End -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Optional JavaScript -->
+  <script>
+    var slideLength = document.querySelectorAll(".slider-indicator li").length;
+
+    function currentSlideDot(num) {
+      let changeSlide = num;
+      showSlide(changeSlide);
+    }
+
+    function slideChange(next) {
+      var slideChangeId = next.id;
+      var currentSlide = document.querySelectorAll('.active-slide')[0].id;
+      var changeSlide = '';
+      if (slideChangeId == 'next') {
+        if (currentSlide == slideLength) {
+          changeSlide = 1;
+        } else {
+          changeSlide = parseInt(currentSlide) + 1;
+        }
+      } else {
+        if (currentSlide == 1) {
+          changeSlide = slideLength;
+        } else {
+          changeSlide = parseInt(currentSlide) - 1;
+        }
+      }
+      showSlide(changeSlide);
+    }
+
+    function showSlide(changeSlide) {
+      //  Remove active-slide class from current slide
+      document.querySelectorAll('.active-slide')[0].classList.remove('active-slide');
+      //  add active-slide class to changing slide
+      document.querySelector('[data-slide="' + changeSlide + '"]').classList.add('active-slide');
+
+      //  Remove active-dot class from current slide Indicator
+      document.querySelectorAll('.active-dot')[0].classList.remove('active-dot');
+
+      //  Add active-dot class to changing slide Indicator
+      document.querySelector('[data-dot="' + changeSlide + '"]').classList.add('active-dot');
+    }
+  </script>
+
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
