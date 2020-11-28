@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+html,
+body {
+  font-family: "Lato", sans-serif;
+  overflow-x: hidden;
+}
+
+.book-visit {
+  padding: 40px 0 80px;
+}
+
+.book-visit .upcoming-activities {
+  border: 3px solid #ebebeb;
+}
+
+.book-visit .upcoming-activities .card-head {
+  padding: 12px 20px;
+  border-bottom: 2px solid #ebebeb;
+}
+
+.book-visit .upcoming-activities .card-head h3 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #95932a;
+}
+
+.book-visit .upcoming-activities .card-head .btn-light {
+  background-color: #ebebeb;
+  color: #bdba35;
+}
+
+.book-visit .upcoming-activities .saved-item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 12px 20px;
+  border-bottom: 2px solid #ebebeb;
+}
+
+.book-visit .upcoming-activities .saved-item .left-side h4 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #484848;
+  margin-bottom: 4px;
+}
+
+.book-visit .upcoming-activities .saved-item .left-side span {
+  color: #b8b8b8;
+}
+
+.book-visit .upcoming-activities .saved-item .right-side {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.book-visit .upcoming-activities .saved-item .right-side .circle-check {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #bdba35;
+  color: #ebebeb;
+  margin-right: 20px;
+}
+
+.book-visit .upcoming-activities .saved-item .right-side .dropdown .dropdown-toggle {
+  color: #95932a;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.book-visit .upcoming-activities .saved-item .right-side .dropdown .dropdown-toggle::after {
+  display: none;
+}
+
+.book-visit .upcoming-activities .saved-item .right-side .dropdown .dropdown-item:active {
+  background-color: #bdba35;
+}
+
+.modal .modal-content .modal-header {
+  background-color: #bdba35;
+  color: #ebebeb;
+  padding: 8px 16px;
+}
+
+.modal .modal-content .modal-header button {
+  color: #ffffff;
+  outline: none;
+}
+
+.modal .modal-content .modal-body label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.modal .modal-content .modal-body .form-control {
+  padding-left: 0;
+  padding-top: 0;
+  border: none;
+  border-bottom: 2px solid #ebebeb;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.modal .modal-content .modal-footer {
+  border-top: none;
+}
+
+.modal .modal-content .modal-footer .btn-outline-light {
+  border-color: #bdba35;
+  color: #bdba35;
+  margin-right: 12px;
+}
+
+.modal .modal-content .modal-footer .btn-light {
+  background-color: #bdba35;
+  color: #ffffff;
+  border-color: #bdba35;
+}

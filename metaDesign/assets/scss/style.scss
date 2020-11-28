@@ -1,0 +1,131 @@
+// Font Export
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+
+// Global Variables
+$fontLato: "Lato", sans-serif;
+$greenColor: #bdba35;
+$lightColor: #ebebeb;
+$darkColor: #484848;
+$whiteColor: #ffffff;
+
+html,
+body {
+  font-family: $fontLato;
+  overflow-x: hidden;
+}
+
+////////////////////////////
+// Upcoming Activities Start
+////////////////////////////
+.book-visit {
+  padding: 40px 0 80px;
+
+  .upcoming-activities {
+    border: 3px solid $lightColor;
+    // Card Head Start
+    .card-head {
+      padding: 12px 20px;
+      border-bottom: 2px solid $lightColor;
+      h3 {
+        font-size: 26px;
+        font-weight: 700;
+        color: darken($color: $greenColor, $amount: 10);
+      }
+      .btn-light {
+        background-color: $lightColor;
+        color: $greenColor;
+      }
+    }
+    // Saved Item Start
+    .saved-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      border-bottom: 2px solid $lightColor;
+      .left-side {
+        h4 {
+          font-size: 20px;
+          font-weight: 700;
+          color: $darkColor;
+          margin-bottom: 4px;
+        }
+        span {
+          color: darken($color: $lightColor, $amount: 20);
+        }
+      }
+      .right-side {
+        display: flex;
+        align-items: center;
+        .circle-check {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background-color: $greenColor;
+          color: $lightColor;
+          margin-right: 20px;
+        }
+        // Dropdown Customized Start
+        .dropdown {
+          .dropdown-toggle {
+            color: darken($color: $greenColor, $amount: 10);
+            box-shadow: none;
+            &::after {
+              display: none;
+            }
+          }
+          .dropdown-item {
+            &:active {
+              background-color: $greenColor;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Modal Customized Start
+.modal {
+  .modal-content {
+    .modal-header {
+      background-color: $greenColor;
+      color: $lightColor;
+      padding: 8px 16px;
+      button {
+        color: $whiteColor;
+        outline: none;
+      }
+    }
+    .modal-body {
+      label {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+      .form-control {
+        padding-left: 0;
+        padding-top: 0;
+        border: none;
+        border-bottom: 2px solid $lightColor;
+        box-shadow: none;
+      }
+    }
+    .modal-footer {
+      border-top: none;
+      .btn-outline-light {
+        border-color: $greenColor;
+        color: $greenColor;
+        margin-right: 12px;
+      }
+      .btn-light {
+        background-color: $greenColor;
+        color: $whiteColor;
+        border-color: $greenColor;
+      }
+    }
+  }
+}
